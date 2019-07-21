@@ -1,0 +1,44 @@
+
+<head>
+
+<style type="text/css">
+    a:link,a:visited,a:active,a:hover {text-decoration:none; }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+                <a class="navbar-brand" href="{% url 'home' %}" >BLOG</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'new' %}">새글쓰기</a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+<br>
+<br>
+
+{%for blog in blogs.all%}
+
+<div class="card border-info mb-3" style="max-width: 50rem; margin: 10px 100px;">
+        <div class="card-header"><a href="{% url 'detail' blog.id %}" style="font-size:35px;" >{{blog.title}} </a></div>
+        <div class="card-body text-info">
+          <h5 class="card-title">작성날짜: {{blog.pub_date}}</h5>
+          <p class="card-text">{{blog.body}}</p>
+          <a href="{% url 'update' blog.id%}" class="btn btn-primary">수정하기 </a>
+          <a href="{% url 'delete' blog.id %}" class="btn btn-primary">삭제하기 </a>
+        </div>
+      </div>
+
+
+{% endfor%}
+
+</body>
